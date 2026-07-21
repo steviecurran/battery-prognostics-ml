@@ -3,7 +3,10 @@
 
 Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
 
-	    	  MATLAB
+
+
+
+	    🗄️ Oxford Dataset
       			↓
 		  Exploration        		
 				↓
