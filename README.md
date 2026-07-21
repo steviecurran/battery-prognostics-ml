@@ -33,10 +33,13 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 
 ## Highlights
 
+- Zero manual dataset setup – processed dataset downloads automatically on first run
 - Automated dataset loading with intelligent local caching
 - Automatic download of the processed dataset on first run
 - Support for both the original Oxford MATLAB dataset and cached Parquet files
 - End-to-end battery prognostics pipeline from raw measurements to Remaining Useful Life prediction
+
+<img src="assets/images/4_panel_summary_test=C1dc.png" width="900"></p>
 
 ## Process
 
@@ -52,11 +55,11 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 			↓
 	📊 Feature Engineering
         	↓
-	🤖 Model Training
-			↓
-	🔋 SOH Prediction
-       		↓
-	📈 Model Evaluation
+	🤖 Machine Learning
+			│
+        	├── SOH
+        	├── RUL
+        	└── Discharge Time
 		
 ### Repository Structure
 
@@ -153,8 +156,6 @@ Examples include:
 - Temperature gradient
 
 Observation windows from 1 to 30 minutes are investigated to determine how much information is required before useful predictions become possible.
-
-<img src="assets/images/4_panel_summary_test=C1dc.png" width="900"></p>
 
 ## Prediction Tasks
 
