@@ -4,17 +4,18 @@
 Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
 
 
-
-
-	    🗄️ Oxford Dataset
-      			↓
-		  Exploration        		
-				↓
-	  Feature engineering
-        		↓
-		 Machine Learning
-        		↓
-	    SOH • RUL • t_cyc
+	🗄️ Oxford Dataset
+      		↓
+	⚙️ Data Loading & Cleaning      		
+			↓
+	📊 Feature Engineering
+        	↓
+	🤖 Model Training
+			↓
+	🔋 SOH Prediction
+       		↓
+	📈 Model Evaluation
+		
 
 Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac), the project develops a complete machine learning workflow—from raw data extraction and feature engineering through to predictive modelling and rigorous model evaluation—to investigate three battery prognostic tasks:
 
