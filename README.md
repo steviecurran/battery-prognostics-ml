@@ -87,7 +87,7 @@ The dataset contains:
 
 The notebooks convert these raw time-series measurements into one observation per diagnostic cycle suitable for machine learning.
 	
-  <img src="assets/images/Time_min-Voltage_V_test=C1dc_cyc5000.png" width="450">
+  <img src="assets/images/Time_min-Voltage_V_test=C1dc_cyc5000.png" width="550">
 </p>
 
 ## Feature Engineering
@@ -105,8 +105,7 @@ Examples include:
 
 Observation windows from 1 to 30 minutes are investigated to determine how much information is required before useful predictions become possible.
 
-<img src="assets/images/4_panel_summary_test=C1dc.png"width="750">
-
+<img src="assets/images/4_panel_summary_test=C1dc.png" width="750">
 
 ## Prediction Tasks
 
