@@ -55,7 +55,7 @@ The central question explored throughout this project is:
 
 If successful, this could enable battery health assessment without waiting for a complete discharge cycle.
 
-##Repository Structure
+## Repository Structure
 
 	notebooks/
 		01_dataset_extraction.ipynb
