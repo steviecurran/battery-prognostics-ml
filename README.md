@@ -79,7 +79,7 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
     		Predict discharge duration
     		Predict State of Health
     		Predict Remaining Useful Life
-    	E	valuate multiple machine learning models
+    		Evaluate multiple machine learning models
     
     	src/
     		loader.py
