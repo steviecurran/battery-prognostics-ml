@@ -42,7 +42,7 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 - Clean, modular Python package structure
 - Publication-ready visualisations
 
-## Requirements
+### Requirements
 
 - Python 3.11+
 
