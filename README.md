@@ -89,6 +89,10 @@ The notebooks convert these raw time-series measurements into one observation pe
 
 <img src="assets/images/Time_min-Voltage_V_Test=C1dc_cyc5000.png"width="450">
 ![Voltage curve](assets/images/Time_min-Voltage_V_test=C1dc_cyc5000.png)
+<p align="center">
+	
+  <img src="assets/images/Time_min-Voltage_V_test=C1dc_cyc5000.png" width="450">
+</p>
 
 ## Feature Engineering
 
