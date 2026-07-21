@@ -87,7 +87,7 @@ The dataset contains:
 
 The notebooks convert these raw time-series measurements into one observation per diagnostic cycle suitable for machine learning.
 
-<img src="assets/images/Time_min-Voltage_V_test=C1dc_cyc5000.png"width="450">
+<img src="assets/images/Time_min-Voltage_V_Test=C1dc_cyc5000.png"width="450">
 
 ## Feature Engineering
 
