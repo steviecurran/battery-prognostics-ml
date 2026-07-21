@@ -143,17 +143,17 @@ Observation windows from 1 to 30 minutes are investigated to determine how much 
 
 Three prediction targets are investigated.
 
-### Discharge Duration (t_cyc)
+- **Discharge Duration (t_cyc)**
 
-Estimate the total duration of the current discharge cycle using only the first few minutes of data.
+	Estimate the total duration of the current discharge cycle using only the first few minutes of data.
 
-### State of Health (SOH)
+- **State of Health (SOH)**
 
-Estimate the battery's current health, expressed as the fraction of its initial discharge capacity (approximated using discharge duration under constant-current conditions).
+	Estimate the battery's current health, expressed as the fraction of its initial discharge capacity (approximated using discharge duration under constant-current conditions).
 
-### Remaining Useful Life (RUL)
+ - **Remaining Useful Life**
 
-Estimate the remaining number of drive cycles until the battery reaches the final recorded characterisation cycle.
+	Estimate the remaining number of drive cycles until the battery reaches the final recorded characterisation cycle.
 
 ## Machine Learning
 
