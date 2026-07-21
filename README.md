@@ -105,7 +105,7 @@ Examples include:
 
 Observation windows from 1 to 30 minutes are investigated to determine how much information is required before useful predictions become possible.
 
-<img src="assets/images/4_panel_summary_test=C1dc.png" width="750">
+<img src="assets/images/4_panel_summary_test=C1dc.png" width="900"></p>
 
 ## Prediction Tasks
 
