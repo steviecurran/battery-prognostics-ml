@@ -1,44 +1,8 @@
 # Machine Learning for Lithium-Ion Battery Health Estimation
 
-## Background
+## Introduction
 
-Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
-
-Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac), the project develops a complete machine learning workflow—from raw data extraction and feature engineering through to predictive modelling and rigorous model evaluation—to investigate three battery prognostic tasks:
-
-- **Discharge duration**
-- **State of Health (SOH)**
-- **Remaining Useful Life (RUL)**
-
-Rather than simply maximising prediction accuracy, the emphasis is on physically meaningful feature engineering, honest validation, and interpretable model evaluation.
-
-
-## Project Highlights
-
-- End-to-end reproducible ML workflow
-- Automated dataset loading and caching
-- Domain-specific battery feature engineering
-- Multiple regression models (Random Forest, Gradient Boosting, XGBoost)
-- Cross-validation and performance comparison
-- Clean, modular Python package structure
-- Publication-ready visualisations
-
-## Workflow
-
-	🗄️ Oxford Dataset
-      		↓
-	⚙️ Data Loading & Cleaning      		
-			↓
-	📊 Feature Engineering
-        	↓
-	🤖 Model Training
-			↓
-	🔋 SOH Prediction
-       		↓
-	📈 Model Evaluation
-		
-
-## Motivation
+###  Motivation
 
 Lithium-ion batteries degrade gradually through mechanisms such as:
 
@@ -55,7 +19,46 @@ The central question explored throughout this project is:
 
 If successful, this could enable battery health assessment without waiting for a complete discharge cycle.
 
-## Repository Structure
+### Background
+
+Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
+
+Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac), the project develops a complete machine learning workflow—from raw data extraction and feature engineering through to predictive modelling and rigorous model evaluation—to investigate three battery prognostic tasks:
+
+- **Discharge duration**
+- **State of Health (SOH)**
+- **Remaining Useful Life (RUL)**
+
+Rather than simply maximising prediction accuracy, the emphasis is on physically meaningful feature engineering, honest validation, and interpretable model evaluation.
+
+
+### Project Highlights
+
+- End-to-end reproducible ML workflow
+- Automated dataset loading and caching
+- Domain-specific battery feature engineering
+- Multiple regression models (Random Forest, Gradient Boosting, XGBoost)
+- Cross-validation and performance comparison
+- Clean, modular Python package structure
+- Publication-ready visualisations
+
+### Workflow
+
+	🗄️ Oxford Dataset
+      		↓
+	⚙️ Data Loading & Cleaning      		
+			↓
+	📊 Feature Engineering
+        	↓
+	🤖 Model Training
+			↓
+	🔋 SOH Prediction
+       		↓
+	📈 Model Evaluation
+		
+
+
+### Repository Structure
 
 	notebooks/
 		01_dataset_extraction.ipynb
@@ -92,6 +95,19 @@ If successful, this could enable battery health assessment without waiting for a
 
 The project uses the publicly available [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac)  developed by the University of Oxford.
 
+### Download
+	
+	https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac
+
+Place
+
+	Oxford_Battery_Degradation_Dataset_1.mat
+
+inside
+
+	data/
+
+### Description
 The dataset contains:
 
 - 8 lithium-ion pouch cells
