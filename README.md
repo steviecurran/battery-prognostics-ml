@@ -31,16 +31,12 @@ Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid
 
 Rather than simply maximising prediction accuracy, the emphasis is on physically meaningful feature engineering, honest validation, and interpretable model evaluation.
 
+## Highlights
 
-### Project Highlights
-
-- End-to-end reproducible ML workflow
-- Automated dataset loading and caching
-- Domain-specific battery feature engineering
-- Multiple regression models (Random Forest, Gradient Boosting, XGBoost)
-- Cross-validation and performance comparison
-- Clean, modular Python package structure
-- Publication-ready visualisations
+- Automated dataset loading with intelligent local caching
+- Automatic download of the processed dataset on first run
+- Support for both the original Oxford MATLAB dataset and cached Parquet files
+- End-to-end battery prognostics pipeline from raw measurements to Remaining Useful Life prediction
 
 ## Process
 
