@@ -1,8 +1,29 @@
 # Machine Learning for Lithium-Ion Battery Health Estimation
 
+## Background
 
 Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
 
+Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac), the project develops a complete machine learning workflow—from raw data extraction and feature engineering through to predictive modelling and rigorous model evaluation—to investigate three battery prognostic tasks:
+
+- **Discharge duration**
+- **State of Health (SOH)**
+- **Remaining Useful Life (RUL)**
+
+Rather than simply maximising prediction accuracy, the emphasis is on physically meaningful feature engineering, honest validation, and interpretable model evaluation.
+
+
+## Project Highlights
+
+- End-to-end reproducible ML workflow
+- Automated dataset loading and caching
+- Domain-specific battery feature engineering
+- Multiple regression models (Random Forest, Gradient Boosting, XGBoost)
+- Cross-validation and performance comparison
+- Clean, modular Python package structure
+- Publication-ready visualisations
+
+## Workflow
 
 	🗄️ Oxford Dataset
       		↓
@@ -16,15 +37,6 @@ Battery prognostics is an active research area underpinning electric vehicles, g
        		↓
 	📈 Model Evaluation
 		
-
-Using [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac), the project develops a complete machine learning workflow—from raw data extraction and feature engineering through to predictive modelling and rigorous model evaluation—to investigate three battery prognostic tasks:
-
-- **Discharge duration**
-- **State of Health (SOH)**
-- **Remaining Useful Life (RUL)**
-
-
-Rather than simply maximising prediction accuracy, the emphasis is on physically meaningful feature engineering, honest validation, and interpretable model evaluation.
 
 ## Motivation
 
