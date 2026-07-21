@@ -91,23 +91,42 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
     
     	data/
     		Oxford_Battery_Degradation_Dataset_1.mat
+
+### Quick Start
+
+```bash
+git clone https://github.com/steviecurran/battery-prognostics-ml.git
+cd battery-prognostics-ml
+
+pip install -r requirements.txt
+```
+
+Open the notebooks and run them in order:
+
+1. Dataset extraction
+2. Exploratory analysis
+3. Feature engineering
+4. Predictive Modelling
+
+On first run, the processed dataset (~31 MB) will be downloaded automatically and cached locally.
 		
    	
 ## Dataset
 
 The project uses the publicly available [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac)  developed by the University of Oxford.
 
-### Download
-	
-	https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac
+### Sourcing
 
-Place
+For convenience, a processed Parquet version of the dataset is automatically downloaded the first time you run the notebooks. The downloaded file is cached locally in the `data/` directory and reused in future sessions.
+
+If you prefer to work from the original data, download the Oxford Battery Degradation Dataset and place:
 
 	Oxford_Battery_Degradation_Dataset_1.mat
-
 inside
 
 	data/
+
+
 
 ### Description
 The dataset contains:
