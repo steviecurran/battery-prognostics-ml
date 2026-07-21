@@ -46,14 +46,6 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 
 - Python 3.11+
 
-	git clone https://github.com/steviecurran/battery-prognostics-ml.git
-	cd battery-prognostics-ml
-
-	python -m venv .venv
-	source .venv/bin/activate      # Windows: .venv\Scripts\activate
-
-	pip install -r requirements.txt
-
 ### Workflow
 
 	🗄️ Oxford Dataset
