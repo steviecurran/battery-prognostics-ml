@@ -1,5 +1,8 @@
 matplotlib==3.9.2
 numpy==1.26.4
-pandas
-requests
-scikit-learn
+pandas==2.1.4
+pyarrow==21.0.0
+requests==2.32.4
+scikit-learn==1.6.1
+scipy==1.13.1
+xgboost==2.1.4
