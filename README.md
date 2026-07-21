@@ -42,6 +42,8 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 - Clean, modular Python package structure
 - Publication-ready visualisations
 
+## Process
+
 ### Requirements
 
 - Python 3.11+
@@ -60,8 +62,6 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
        		↓
 	📈 Model Evaluation
 		
-
-
 ### Repository Structure
 
 	notebooks/
@@ -92,9 +92,7 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
     	data/
     		Oxford_Battery_Degradation_Dataset_1.mat
 		
-
-    
-     	
+   	
 ## Dataset
 
 The project uses the publicly available [The Oxford Battery Degradation Dataset](https://ora.ox.ac.uk/objects/uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac)  developed by the University of Oxford.
