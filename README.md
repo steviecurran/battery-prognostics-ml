@@ -44,6 +44,15 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 
 ### Workflow
 
+Estimated setup time: 2–3 minutes
+
+pip install -r requirements.txt
+
+Download dataset
+
+Run Notebook 2
+
+
 	🗄️ Oxford Dataset
       		↓
 	⚙️ Data Loading & Cleaning      		
