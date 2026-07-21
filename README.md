@@ -154,7 +154,7 @@ This answers the practical engineering question:
 
 **Can a model trained on existing batteries generalise to a battery it has never seen before?**
 
-<img src="assets/images/ML_gradient-boosting.png "width="850">
+<img src="assets/images/ML_gradient-boosting.png" width="850">
 
 
 ## Key Findings
