@@ -1,4 +1,4 @@
-# Machine Learning for Lithium-Ion Battery Health Estimation
+# Machine Learning for Lithium-Ion Battery Health Estimate
 
 ## Introduction
 
