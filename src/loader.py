@@ -2,79 +2,195 @@ import pandas as pd
 import numpy as np
 from scipy.io import loadmat
 from scipy.signal import savgol_filter, find_peaks
-import requests
 from pathlib import Path
+import requests
 
-#infile = "../data/Oxford_Battery_Degradation_Dataset_1.mat"; mat_data = loadmat(infile)
 
-DATA_URL = (
-    "https://ora.ox.ac.uk/objects/"
-    "uuid:03ba4b01-cfed-46d3-9b1a-7d4a7bdf6fac/"
-    "files/mc247ds58f"
+# Repository root
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+DATA_DIR = PROJECT_ROOT / "data"
+MAT_FILE = DATA_DIR / "Oxford_Battery_Degradation_Dataset_1.mat"
+
+REMOTE_PARQUET_URL = (
+    "https://drive.google.com/uc?export=download&id=1Rtkx17Iho2BbwU1MTuxBxXC8EkJFiKUo"
 )
 
-DATA_FILE = Path(__file__).parent.parent / "data" / "Oxford_Battery_Degradation_Dataset_1.mat"
 
+def download_file(url, destination):
+    """Download a file only when it does not already exist."""
 
-def download_dataset():
-    if DATA_FILE.exists():
-        return
+    destination.parent.mkdir(parents=True, exist_ok=True)
 
-    DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
-    print("Downloading Oxford Battery Degradation Dataset...")
+    print(f"Downloading dataset to:\n{destination}")
 
-    with requests.get(DATA_URL, stream=True) as r:
-        r.raise_for_status()
+    with requests.get(url, stream=True, timeout=120) as response:
+        response.raise_for_status()
 
-        with open(DATA_FILE, "wb") as f:
-            for chunk in r.iter_content(chunk_size=1024 * 1024):
+        with open(destination, "wb") as file:
+            for chunk in response.iter_content(chunk_size=1024 * 1024):
                 if chunk:
-                    f.write(chunk)
+                    file.write(chunk)
 
     print("Download complete.")
 
-def load_oxford_dataset(test):
-    download_dataset()
-    mat_data = loadmat(DATA_FILE)
+    if destination.stat().st_size < 100000:
+        raise RuntimeError(
+            "Downloaded file is unexpectedly small. "
+            "Check that the Google Drive file is shared publicly."
+    )
+
     
-    dfs = [] 
-    for cell_no in range(1, 9):
-        cell = mat_data[f"Cell{cell_no}"]
+def load_oxford_dataset(test_name="C1dc", use_cache=True):
+    """
+    Load one Oxford battery dataset.
 
-        for cycle_name in cell.dtype.names:
-            cycle_number = int(cycle_name.replace("cyc", ""))
-            cycle = cell[cycle_name][0, 0]
-            measurement = cycle[test][0, 0]
-            
-            if test not in cycle.dtype.names:
-                continue
-                
-            t = measurement["t"][0, 0].flatten()
-            v = measurement["v"][0, 0].flatten()
-            q = measurement["q"][0, 0].flatten()
-            T = measurement["T"][0, 0].flatten()
+    Priority:
+        1. Local Parquet
+        2. Local CSV
+        3. Download Parquet
+        4. Local MATLAB file
+    """
 
-            if len(t) == 0:
-                continue
+    parquet_file = DATA_DIR / f"Oxford_Battery_Dataset_test={test_name}.parquet"
+    csv_file = DATA_DIR / f"Oxford_Battery_Dataset_test={test_name}.csv"
 
-            time_min = (t - t[0]) * 24 * 60
-            
-            cycle_dict = {"Cell": cell_no,"Cycle": cycle_number,"Test": test, 
-                "Time_min": time_min, "Voltage_V": v,"Charge_mAh": q,"Temperature_C": T
-            }
-            dfs.append(pd.DataFrame(cycle_dict))
-          
-    if dfs:
-        df = pd.concat(dfs, ignore_index=True)
-    else:
-        df = pd.DataFrame(columns=["Cell","Cycle", "Test","Time_min", "Voltage_V", "Charge_mAh", "Temperature_C"])
+    # ---------------------------------------------------------
+    # 1. Local Parquet
+    # ---------------------------------------------------------
+
+    if use_cache and parquet_file.exists():
+        print(f"✓ Loading cached Parquet:\n{parquet_file}")
+        return pd.read_parquet(parquet_file)
+
+    # ---------------------------------------------------------
+    # 2. Local CSV
+    # ---------------------------------------------------------
+
+    if use_cache and csv_file.exists():
+        print(f"✓ Loading cached CSV:\n{csv_file}")
+
+        df = pd.read_csv(csv_file)
+
+        df.to_parquet(parquet_file, index=False)
+
+        return df
+
+    # ---------------------------------------------------------
+    # 3. Download processed dataset
+    # ---------------------------------------------------------
+
+    if use_cache and REMOTE_PARQUET_URL:
+
+        print("Processed dataset not found.")
+        print("Downloading from Google Drive...")
+
+        download_file(REMOTE_PARQUET_URL, parquet_file)
+        try:
+            return pd.read_parquet(parquet_file)
+
+        except Exception as e:
+            raise RuntimeError(
+                "The downloaded file could not be opened as a Parquet file. "
+                "Check that the Google Drive link is public and points directly to the dataset."
+            ) from e
+
         
-    return df    
+    # ---------------------------------------------------------
+    # 4. Parse MATLAB file
+    # ---------------------------------------------------------
 
+    if MAT_FILE.exists():
 
-# =====================================================================
-# THE UNIFIED RAW SUB-GROUP FEATURE EXTRACTOR
-# =====================================================================
+        print("Parsing Oxford MATLAB dataset...")
+
+        mat_data = loadmat(MAT_FILE)
+
+        dfs = []
+
+        for cell_no in range(1, 9):
+
+            cell = mat_data[f"Cell{cell_no}"]
+
+            for cycle_name in cell.dtype.names:
+
+                cycle_number = int(cycle_name.replace("cyc", ""))
+
+                cycle = cell[cycle_name][0, 0]
+
+                if test_name not in cycle.dtype.names:
+                    continue
+
+                measurement = cycle[test_name][0, 0]
+
+                t = measurement["t"][0, 0].flatten()
+                v = measurement["v"][0, 0].flatten()
+                q = measurement["q"][0, 0].flatten()
+                T = measurement["T"][0, 0].flatten()
+
+                if len(t) == 0:
+                    continue
+
+                time_min = (t - t[0]) * 24 * 60
+
+                dfs.append(
+                    pd.DataFrame(
+                        {
+                            "Cell": cell_no,
+                            "Cycle": cycle_number,
+                            "Test": test_name,
+                            "Time_min": time_min,
+                            "Voltage_V": v,
+                            "Charge_mAh": q,
+                            "Temperature_C": T,
+                        }
+                    )
+                )
+
+        if len(dfs) == 0:
+            raise RuntimeError(f"No '{test_name}' measurements found.")
+
+        df = pd.concat(dfs, ignore_index=True)
+
+        parquet_file.parent.mkdir(parents=True, exist_ok=True)
+
+        df.to_parquet(parquet_file, index=False)
+
+        print(f"✓ Saved Parquet cache:\n{parquet_file}")
+
+        return df
+
+    # ---------------------------------------------------------
+    # 5. Nothing found
+    # ---------------------------------------------------------
+
+    raise FileNotFoundError(
+        f"""
+No Oxford battery dataset was found.
+
+Expected one of:
+
+    {parquet_file}
+
+    {csv_file}
+
+    {MAT_FILE}
+
+Either:
+
+• Allow the automatic Google Drive download
+
+or
+
+• Download the original Oxford MATLAB dataset and place
+
+    Oxford_Battery_Degradation_Dataset_1.mat
+
+inside
+
+    data/
+"""
+    )
+
 
 def extract_advanced_features(group):
     """Calculates all advanced time-series, derivative, and threshold metrics
