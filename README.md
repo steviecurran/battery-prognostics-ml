@@ -230,7 +230,7 @@ This answers the practical engineering question:
 - Matplotlib
 - Jupyter Notebook
 
-##S kills Demonstrated
+## Skills Demonstrated
 
 - Machine Learning
 - Time-series feature engineering
