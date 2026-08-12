@@ -19,6 +19,8 @@ The central question explored throughout this project is:
 
 If successful, this could enable battery health assessment without waiting for a complete discharge cycle.
 
+<span style="background-color: #FFFF00">**See [https://battery-health-ml-workbench.streamlit.app](https://battery-health-ml-workbench.streamlit.app) for a (lighter) live app version, which works from the feature engineered summary data**</span>
+
 ### Background
 
 Battery prognostics is an active research area underpinning electric vehicles, grid storage and predictive maintenance. Accurate estimation of *State of Health* (SOH) and *Remaining Useful Life* (RUL) enables improved maintenance planning, safer battery operation and more efficient use of battery assets. This project investigates whether these quantities can be estimated from only the first few minutes of a diagnostic discharge.
@@ -230,7 +232,7 @@ This answers the practical engineering question:
 - Matplotlib
 - Jupyter Notebook
 
-## Skills Demonstrated
+##S kills Demonstrated
 
 - Machine Learning
 - Time-series feature engineering
