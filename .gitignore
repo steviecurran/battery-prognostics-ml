@@ -1,0 +1,29 @@
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Backup files
+*~
+
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# IDEs
+.vscode/
+.idea/
+
+# Downloaded dataset
+data/Oxford_Battery_Degradation_Dataset_1.mat
+
+# Generated datasets
+data/*.csv
+data/*.parquet
+data/*.mat
