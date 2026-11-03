@@ -19,7 +19,7 @@ The central question explored throughout this project is:
 
 If successful, this could enable battery health assessment without waiting for a complete discharge cycle.
 
-<span style="background-color: #FFFF00">**See [https://battery-health-ml-workbench.streamlit.app](https://battery-health-ml-workbench.streamlit.app) for a  live app version, which works from the feature engineered summary data**</span>
+**Interactive version:** [live app](https://battery-health-ml-workbench.streamlit.app) · [source code](https://github.com/steviecurran/battery-health-ml-workbench), working from the cycle-level feature table produced here.
 
 ### Background
 
@@ -87,7 +87,7 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
     
     	src/
     		loader.py
-    		plotting.py
+    		plotter.py
     
     	data/
     		Oxford_Battery_Degradation_Dataset_1.mat
@@ -210,17 +210,20 @@ This answers the practical engineering question:
 
 ## Key Findings
 
-- Early-discharge voltage and temperature measurements contain sufficient information to estimate current battery condition with high accuracy.
+- **State of Health can be estimated from the first 5 minutes of discharge:** on completely unseen cells (leave-one-cell-out), Random Forest achieved a mean RMSE of 0.011 SOH (≈1.1 percentage points; range 0.006–0.019 across the eight cells), with R² between 0.89 and 0.99.
 
-- Random Forest and Histogram Gradient Boosting consistently outperform linear regression models.
+- **Model choice involves a trade-off:** Random Forest gave the lowest average error (mean RMSE 0.0106 vs 0.0119 for Ridge, best on 5 of 8 cells), but Ridge regression was more accurate for the most degraded measurements.
 
-- State of Health can be estimated accurately from only a short observation window.
+- **Tree-based models cannot extrapolate beyond the training range:** for the few points below ~0.75 SOH (e.g. Cells 2 and 5), Random Forest overestimated health (predicting ~0.72 for an actual ~0.62), while Ridge tracked these points closely. Since most cells end testing at ~0.75–0.80 SOH, this matters most for end-of-life detection, where accuracy is most needed.
 
-- Remaining Useful Life is substantially more difficult because it depends on the battery's future degradation trajectory rather than only its current condition.
+- **Five minutes of discharge is enough:** extending the observation window from 5 to 20 minutes gave no measurable improvement in SOH accuracy (mean RMSE 0.0106 vs 0.0114; each window better on 4 of 8 cells). The degradation signal appears early in discharge, which suggests that diagnostic tests could be shortened substantially without loss of accuracy.
 
-- Increasing the observation window beyond approximately five minutes provides surprisingly little additional predictive information for this dataset.
+- **Remaining Useful Life is substantially harder:** Random Forest achieved a median RMSE of ~1,100 drive cycles (range 300–2,100) across unseen cells, roughly 15–25% of cell lifetime. Most cells show high correlation (r > 0.9) but low or negative R², meaning the model captures the shape of each cell's decline but not its total lifetime: cell-to-cell lifetime variation cannot be inferred from a single 5-minute snapshot with only eight training cells.
 
-- Rigorous validation is essential; random train/test splits substantially overestimate predictive performance for battery degradation datasets.
+- **Extrapolation behaviour cuts both ways:** Ridge's ability to extrapolate helped for the most degraded SOH points but produced runaway RUL predictions (RMSE up to ~8,700 cycles), while Random Forest plateaued instead.
+
+- **Validation strategy changes the conclusions:** a conventional random 5-fold split overstates performance, modestly for SOH (R² 0.982 vs 0.966 on unseen cells) but dramatically for RUL (R² = 0.94 vs 0.42; RMSE 550 vs 1,180 drive cycles). Because RUL depends on each battery's individual lifetime, a random split lets the model learn that lifetime from neighbouring cycles of the same cell; holding out whole batteries removes this leakage and gives a realistic estimate for new batteries.
+
 
 ## Technologies
 - Python
@@ -231,7 +234,7 @@ This answers the practical engineering question:
 - Matplotlib
 - Jupyter Notebook
 
-##S kills Demonstrated
+## Skills Demonstrated
 
 - Machine Learning
 - Time-series feature engineering
