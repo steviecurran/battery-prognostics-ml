@@ -19,7 +19,7 @@ The central question explored throughout this project is:
 
 If successful, this could enable battery health assessment without waiting for a complete discharge cycle.
 
-<span style="background-color: #FFFF00">**See [https://battery-health-ml-workbench.streamlit.app](https://battery-health-ml-workbench.streamlit.app) for a (lighter) live app version, which works from the feature engineered summary data**</span>
+<span style="background-color: #FFFF00">**See [https://battery-health-ml-workbench.streamlit.app](https://battery-health-ml-workbench.streamlit.app) for a  live app version, which works from the feature engineered summary data**</span>
 
 ### Background
 
@@ -37,7 +37,6 @@ Rather than simply maximising prediction accuracy, the emphasis is on physically
 
 - Zero manual dataset setup – processed dataset downloads automatically on first run
 - Automated dataset loading with intelligent local caching
-- Automatic download of the processed dataset on first run
 - Support for both the original Oxford MATLAB dataset and cached Parquet files
 - End-to-end battery prognostics pipeline from raw measurements to Remaining Useful Life prediction
 
